@@ -20,6 +20,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Articles from './Articles';
 import Article from './Article';
+import unfetch from 'unfetch';
 
 const client = new ApolloClient({
   cache: new InMemoryCache({
@@ -45,6 +46,8 @@ const client = new ApolloClient({
   }),
   link: new HttpLink({
     uri: 'https://metaphysics-production.artsy.net/',
+    //Workaround react-native-debugger bug
+    fetch: unfetch,
   }),
 });
 
